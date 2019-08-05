@@ -1,4 +1,4 @@
-require 'volunteer'
+
 
 class Project
   attr_accessor :title, :id
@@ -7,13 +7,17 @@ class Project
     @id = attributes.fetch(:id)
   end
 
+  def self.title
+    @title
+  end
+
   def save
     result = DB.exec("INSERT INTO projects (title) VALUES ('#{@title}') RETURNING id;")
     @id = result.first().fetch("id").to_i
   end
 
   def ==(some_project)
-    @title == some_project.title
+    self.title == some_project.title
   end
 
   def self.all
@@ -45,6 +49,11 @@ class Project
   def update(title)
     @title = title
     DB.exec("UPDATE projects SET title = '#{@title}' WHERE id = #{@id};")
+  end
+
+  def delete
+    DB.exec("DELETE FROM projects WHERE id = #{@id};")
+    DB.exec("DELETE FROM volunteers WHERE project_id = #{@id};")
   end
 
 
