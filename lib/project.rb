@@ -12,8 +12,8 @@ class Project
     @id = result.first().fetch("id").to_i
   end
 
-  def ==(project)
-    @title == project.title
+  def ==(some_project)
+    @title == some_project.title
   end
 
   def self.all
@@ -40,6 +40,11 @@ class Project
 
   def volunteers
     Volunteer.find_by_project(self.id)
+  end
+
+  def update(title)
+    @title = title
+    DB.exec("UPDATE projects SET title = '#{@title}' WHERE id = #{@id};")
   end
 
 
