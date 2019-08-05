@@ -6,8 +6,8 @@ class Volunteer
     @id = attributes.fetch(:id)
   end
 
-  def ==(name)
-    @name == name.name
+  def ==(volunteer)
+    @name == volunteer.name
   end
 
   def save
@@ -39,4 +39,11 @@ class Volunteer
     end
   end
 
+  def self.clear
+    DB.exec("DELETE FROM volunteers *;")
+  end
+
+  def delete
+    DB.exec("DELETE FROM volunteers WHERE id = #{@id};")
+  end
 end
