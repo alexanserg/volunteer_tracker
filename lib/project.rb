@@ -1,3 +1,5 @@
+require 'volunteer'
+
 class Project
   attr_accessor :title, :id
   def initialize(attributes)
@@ -34,6 +36,10 @@ class Project
     else
       nil
     end
+  end
+
+  def volunteers
+    Volunteer.find_by_project(self.id)
   end
 
 

@@ -39,12 +39,26 @@ class Volunteer
     end
   end
 
-
-  def self.clear
-    DB.exec("DELETE FROM volunteers *;")
+  def self.find_by_project(project_id)
+    volunteers =[]
+    result = DB.exec("SELECT * FROM volunteers WHERE project_id = #{project_id};").first
+    result.each do |volunteer|
+      name = volunteer.fetch("name")
+      id = volunteer.fetch("id").to_i
+      volunteers.push(Volunteer.new({:name => name, :project_id => project_id, :id => id}))
+    end
+    volunteers
   end
 
-  def delete
-    DB.exec("DELETE FROM volunteers WHERE id = #{@id};")
-  end
+
+
+
+
+def self.clear
+  DB.exec("DELETE FROM volunteers *;")
+end
+
+def delete
+  DB.exec("DELETE FROM volunteers WHERE id = #{@id};")
+end
 end
