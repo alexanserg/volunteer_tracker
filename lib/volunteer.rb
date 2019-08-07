@@ -52,14 +52,15 @@ class Volunteer
   end
 
 
+  def update_project(project_id)
+    DB.exec("UPDATE volunteers SET project_id = #{project_id} WHERE id = #{id};")
+  end
 
+  def self.clear
+    DB.exec("DELETE FROM volunteers *;")
+  end
 
-
-def self.clear
-  DB.exec("DELETE FROM volunteers *;")
-end
-
-def delete
-  DB.exec("DELETE FROM volunteers WHERE id = #{@id};")
-end
+  def delete
+    DB.exec("DELETE FROM volunteers WHERE id = #{@id};")
+  end
 end

@@ -1,0 +1,11 @@
+<h4>Volunteer: <%= @volunteer.name %></h4>
+<h4>Current project by id: <%= @volunteer.project_id%></h4>
+
+
+<form class="" action="/volunteer/<%= @volunteer.id %>" method="post">
+  <input name="_method" type="hidden" value="delete"><br>
+  <button type="submit" name="button">Delete volunteer</button>
+</form>
+<br>
+<a href="/update_volunteer/<%= @volunteer.id %>">Update this Volunteer's project.</a><br>
+<a href="/">Back to projects</a>

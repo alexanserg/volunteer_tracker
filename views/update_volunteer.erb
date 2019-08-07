@@ -1,0 +1,16 @@
+<h3>Update volunteer project:</h3>
+<form action="/update_volunteer/<%= @volunteer.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <div class="form-group">
+    <h2>Volunteer: <%= @volunteer.name %></h2>
+
+    <label for="project_id">Current Project by project id number</label>
+    <input name="project_id" class="form-control" type="text" value="<%=  @volunteer.project_id %>">
+  </div>
+  <button type="submit">Update!</button>
+</form>
+
+
+
+
+<a href="/projects">Return to home page</a>

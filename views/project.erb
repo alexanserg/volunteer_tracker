@@ -1,8 +1,12 @@
-<h4>Title: <%= @project.title %></h4>
+<h4>Project Title: <%= @project.title %></h4>
+<h4>Project id: <%= @project.id %></h4>
 
 
 <form class="" action="/project/<%= @project.id %>" method="post">
   <input name="_method" type="hidden" value="delete">
-  <button type="submit" name="button">Delete project</button>
+  <button type="submit" name="button">Delete volunteer</button>
 </form>
-<a href="/">Back to home</a>
+<a href="/">Back to home</a><br>
+
+
+<a href="/projects">Return to homepage</a>
