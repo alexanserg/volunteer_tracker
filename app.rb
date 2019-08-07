@@ -14,16 +14,15 @@ end
 
 get ('/projects') do
   @project = Project.all
-  # binding.pry
   erb(:projects)
 end
 
-get ('project/:id') do
+get ('/project/:id') do
   @project = Project.find(params[:id])
   erb(:project)
 end
 
-get ('/project/new') do
+get ('/new_project') do
   erb(:new_project)
 end
 
@@ -32,4 +31,10 @@ post ('/projects') do
   project = Project.new({:title => title, :id => nil})
   project.save
   redirect to ('/projects')
+end
+
+delete ('/project/:id') do
+  project = Project.find(params[:id].to_i)
+  project.delete
+  redirect to('/')
 end
